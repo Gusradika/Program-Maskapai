@@ -18,6 +18,7 @@ public class style {
 
     public static final String RED_BG = "\033[41m"; // Red BG
     public static final String YELLOW_BG = "\033[43m"; // YELLOW
+    public static final String GREEN_BG = "\u001B[42m"; // YELLOW
 
     public static final String CYAN_BG = "\033[46m"; // CYAN
 

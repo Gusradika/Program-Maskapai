@@ -7,6 +7,7 @@ import java.util.*;
 public class main {
 
     public static String[] kota = { "Bali", "Lombok", "Jakarta", "Yogyakarta", "Balikpapan", "Makassar", "Surabaya" };
+    public static String[] maskapai = { "Lionair", "Citilink" };
 
     static SimpleDateFormat day = new SimpleDateFormat("dd");
     static SimpleDateFormat full = new SimpleDateFormat("dd/MM/yyyy");
@@ -21,8 +22,10 @@ public class main {
     static Vector v = new Vector<Integer>();
 
     public static void main(String[] args) {
+        style.cetakSpasi(4);
         int temp = 0;
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < maskapai.length; i++) {
+            System.out.println("Generating Date for maskapai : " + style.YELLOW + maskapai[i] + style.RESET);
             for (int j = 0; j < 2; j++) {
                 for (int k = 0; k < kota.length; k++) {
                     temp = (int) (Math.random() * 10) + 1;
@@ -35,9 +38,10 @@ public class main {
                         }
                         v.add(temp);
                     }
-
                 }
             }
+            System.out.println("Progress => |" + style.GREEN_BG + "___________________" + style.RESET + "| 100%");
+            style.cetakSpasi(2);
         }
 
         menu();
@@ -122,7 +126,7 @@ public class main {
 
     public static void lionair(int x) {
         style.cetakSpasi(1);
-        System.out.println(style.GREEN_U + "LionAir" + style.RESET);
+        System.out.println(style.GREEN_U + maskapai[0] + style.RESET);
 
         if (x == 99 || x == 1) {
             // Surabaya
@@ -209,7 +213,7 @@ public class main {
 
     public static void citilink(int x) {
         style.cetakSpasi(1);
-        System.out.println(style.GREEN_U + "Citilink" + style.RESET);
+        System.out.println(style.GREEN_U + maskapai[1] + style.RESET);
 
         if (x == 99 || x == 1) {
             // Surabaya
