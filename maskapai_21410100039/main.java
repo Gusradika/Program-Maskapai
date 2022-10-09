@@ -5,6 +5,8 @@ import java.sql.Date;
 
 public class main {
 
+    public static String[] kota = { "Bali", "Lombok", "Jakarta", "Yogyakarta", "Balikpapan", "Makassar", "Surabaya" };
+
     public static int DD = 15, YY = 2022;
     public static String MM = "Oktober", date = DD + "/" + MM + "/" + YY;
 
@@ -13,13 +15,10 @@ public class main {
     }
 
     public static void menu() {
+
         int input = 0;
         // Bali = 0, lmbk = 1, jkrt = 2, Yogyakarta = 3, balikpapan = 4, makassar = 5,
         // surabaya = 6
-        String[] kota = { "Bali", "Lombok", "Jakarta", "Yogyakarta", "Balikpapan", "Makassar", "Surabaya" };
-        String[] hargaLa = { "500000", "500000", "600000", "600000", "700000", "700000", "700000", "700000", "",
-                "750000",
-                "800000", "800000", "750000" };
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -59,6 +58,7 @@ public class main {
 
                     // Rute
                     case 2:
+                        style.cetakSpasi(2);
                         System.out.println("##########################################");
                         System.out.println(style.CYAN_BG + "#### 2. Ketersediaan Rute Penerbangan ####" + style.RESET);
                         System.out.println("##########################################");
@@ -67,73 +67,7 @@ public class main {
                         System.out.println(style.YELLOW_BRIGHT
                                 + "Kota Asal\t|\tKota Tujuan\t|\tHarga\t|\tClass\t|\tTanggal Tersedia\t|\tStatus"
                                 + style.RESET);
-                        style.cetakSpasi(1);
-                        System.out.println(style.GREEN_U + "Lion Air" + style.RESET);
-                        for (int i = 0; i < 1; i++) {
-                            // Surabaya
-                            for (int j = 0; j < kota.length; j++) {
-                                // harga dll belum
-                                if (j == 6) {
-                                } else if (j < 3) {
-                                    System.out.println("  " + kota[6] + "\t \t" + kota[j] + "\t \t\t" + hargaLa[j]
-                                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
-                                            + style.RESET);
-                                } else {
-                                    System.out.println("  " + kota[6] + "\t \t" + kota[j] + " \t\t" + hargaLa[j]
-                                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
-                                            + style.RESET);
-                                }
-
-                            }
-
-                            style.cetakSpasi(1);
-
-                            for (int j = 0; j < kota.length; j++) {
-                                // harga dll belum
-                                if (j == 2) {
-                                } else if (j < 2) {
-                                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + "\t \t\t" + hargaLa[j + 6]
-                                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
-                                            + style.RESET);
-                                } else {
-                                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + " \t\t" + hargaLa[j + 6]
-                                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
-                                            + style.RESET);
-                                }
-                            }
-
-                            style.cetakSpasi(1);
-
-                            for (int j = 0; j < kota.length; j++) {
-                                // harga dll belum
-                                if (j == 2) {
-                                } else if (j < 2) {
-                                    System.out.println("  Semarang" + "\t \t" + kota[j] + "\t \t\t" + hargaLa[j + 6]
-                                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
-                                            + style.RESET);
-                                } else {
-                                    System.out.println("  Semarang" + "\t \t" + kota[j] + " \t\t" + hargaLa[j + 6]
-                                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
-                                            + style.RESET);
-                                }
-                            }
-
-                            style.cetakSpasi(1);
-
-                            for (int j = 0; j < kota.length; j++) {
-                                // harga dll belum
-                                if (j == 2) {
-                                } else if (j < 2) {
-                                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + "\t \t\t" + hargaLa[j + 6]
-                                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
-                                            + style.RESET);
-                                } else {
-                                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + " \t\t" + hargaLa[j + 6]
-                                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
-                                            + style.RESET);
-                                }
-                            }
-                        }
+                        lionair();
                         break;
 
                     case 3:
@@ -151,6 +85,164 @@ public class main {
 
         Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public static void lionair() {
+        style.cetakSpasi(1);
+        System.out.println(style.GREEN_U + "LionAir" + style.RESET);
+        for (int i = 0; i < 1; i++) {
+            // Surabaya
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 6) {
+                } else if (j < 3) {
+                    System.out.println(
+                            "  " + kota[6] + "\t \t" + kota[j] + "\t \t\t"
+                                    + Lionair.getTicketCost(kota[6], kota[j])
+                                    + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                                    + style.RESET);
+                } else {
+                    System.out.println("  " + kota[6] + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[6], kota[j])
+                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                            + style.RESET);
+                }
+
+            }
+
+            style.cetakSpasi(1);
+
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 2) {
+                } else if (j < 2) {
+                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + "\t \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                            + style.RESET);
+                } else {
+                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                            + style.RESET);
+                }
+            }
+
+            style.cetakSpasi(1);
+
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 2) {
+                } else if (j < 2) {
+                    System.out.println("  Semarang" + "\t \t" + kota[j] + "\t \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                } else {
+                    System.out.println("  Semarang" + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                }
+            }
+
+            style.cetakSpasi(1);
+
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 2) {
+                } else if (j < 2) {
+                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + "\t \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                } else {
+                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                }
+            }
+        }
+    }
+
+    public static void citilink() {
+        style.cetakSpasi(1);
+        System.out.println(style.GREEN_U + "Citilink" + style.RESET);
+        for (int i = 0; i < 1; i++) {
+            // Surabaya
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 6) {
+                } else if (j < 3) {
+                    System.out.println(
+                            "  " + kota[6] + "\t \t" + kota[j] + "\t \t\t"
+                                    + Lionair.getTicketCost(kota[6], kota[j])
+                                    + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                                    + style.RESET);
+                } else {
+                    System.out.println("  " + kota[6] + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[6], kota[j])
+                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                            + style.RESET);
+                }
+
+            }
+
+            style.cetakSpasi(1);
+
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 2) {
+                } else if (j < 2) {
+                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + "\t \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                            + style.RESET);
+                } else {
+                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                            + style.RESET);
+                }
+            }
+
+            style.cetakSpasi(1);
+
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 2) {
+                } else if (j < 2) {
+                    System.out.println("  Semarang" + "\t \t" + kota[j] + "\t \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                } else {
+                    System.out.println("  Semarang" + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                }
+            }
+
+            style.cetakSpasi(1);
+
+            for (int j = 0; j < kota.length; j++) {
+                // harga dll belum
+                if (j == 2) {
+                } else if (j < 2) {
+                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + "\t \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                } else {
+                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + " \t\t" + Lionair
+                            .getTicketCost(kota[2], kota[j])
+                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                            + style.RESET);
+                }
+            }
         }
     }
 
