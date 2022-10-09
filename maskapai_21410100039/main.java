@@ -9,6 +9,9 @@ public class main {
     public static String[] kota = { "Bali", "Lombok", "Jakarta", "Yogyakarta", "Balikpapan", "Makassar", "Surabaya" };
     public static String[] maskapai = { "Lionair", "Citilink" };
 
+    public static String BookingID, nik, nama, JenisKelamin, tglBerangkat, tglKembali, KotaAsal, kotaTujuan,
+            noPesawat, noKursi;
+
     static SimpleDateFormat day = new SimpleDateFormat("dd");
     static SimpleDateFormat full = new SimpleDateFormat("dd/MM/yyyy");
     static Date date = new Date();
@@ -16,12 +19,13 @@ public class main {
     static String currentDD = (day.format(date)), inputan;
     static String currentDate = (full.format(date));
 
-    public static int DD = Integer.parseInt(currentDD), YY = 2022, temp2 = 0;
+    public static int DD = Integer.parseInt(currentDD), YY = 2022, temp2 = 0, temp3 = 0, temp4 = 0;
     public static String MM = "Oktober", dateC = DD + "/" + MM + "/" + YY;
 
     static Vector v = new Vector<Integer>();
 
     public static void main(String[] args) {
+
         style.cetakSpasi(4);
         int temp = 0;
         for (int i = 0; i < maskapai.length; i++) {
@@ -64,7 +68,7 @@ public class main {
                     System.out.println("#################################");
                     System.out.println(style.GREEN_U + "I Gusti Ngurah Aditya Kesuma - 21410100039" + style.RESET);
                     System.out.println("Date : " + currentDate);
-                    // System.out.println("Vector : " + v);
+                    System.out.println("Vector : " + v);
                     style.cetakSpasi(1);
                     System.out.println("[1]. Pesan Tiket");
                     System.out.println("[2]. Cek Ketersediaan Rute");
@@ -112,16 +116,94 @@ public class main {
                                 ulang = false;
                             } else if (inputan.equalsIgnoreCase("3") || inputan.equalsIgnoreCase("Semarang")) {
                                 temp2 = 3;
-                                ulang = false;
+                                ulang = true;
                             } else if (inputan.equalsIgnoreCase("4") || inputan.equalsIgnoreCase("Pekanbaru")) {
                                 temp2 = 4;
-                                ulang = false;
+                                ulang = true;
                             } else {
                                 style.cetakSpasi(1);
                                 System.out.println(style.RED_BG + "<ERROR> Inputan SALAH! <ERROR>" + style.RESET);
+
+                            }
+                            if (temp2 > 0) {
+                                cekKetersediaan(temp2);
+                            }
+                            if (temp2 == 3 || temp2 == 4) {
+                                System.out.println(
+                                        style.RED_BG + "<ERROR> Penerbangan Tidak Tersedia <ERROR>" + style.RESET);
                             }
                         } while (ulang);
-                        cekKetersediaan(temp2);
+
+                        do {
+                            System.out.print("Pilih Maskpai [Lionair / Citilink] " + style.RED + "[0 = Back] : "
+                                    + style.RESET);
+                            inputan = br.readLine();
+                            if (inputan.equalsIgnoreCase("0")) {
+                                menu();
+                            }
+                            if (inputan.equalsIgnoreCase("Lionair")) {
+                                temp3 = 1;
+                            } else if (inputan.equalsIgnoreCase("Citilink")) {
+                                temp3 = 2;
+                            } else {
+                                temp3 = 0;
+                                System.out.println(style.RED_BG + "<ERROR> Inputan SALAH! <ERROR>" + style.RESET);
+                            }
+                        } while (temp3 == 0);
+
+                        do {
+                            System.out.print("Pilih Kota Tujuan  " + style.RED + "[0 = Back] : "
+                                    + style.RESET);
+                            inputan = br.readLine();
+                            if (inputan.equalsIgnoreCase("0")) {
+                                menu();
+                            }
+                            if (inputan.equalsIgnoreCase("Bali")) {
+                                temp4 = 1;
+                            } else if (inputan.equalsIgnoreCase("Lombok")) {
+                                temp4 = 2;
+                            } else if (inputan.equalsIgnoreCase("Jakarta") && temp2 != 2) {
+                                temp4 = 3;
+                            } else if (inputan.equalsIgnoreCase("Yogyakarta")) {
+                                temp4 = 4;
+                            } else if (inputan.equalsIgnoreCase("Balikpapan")) {
+                                temp4 = 5;
+                            } else if (inputan.equalsIgnoreCase("Makassar")) {
+                                temp4 = 6;
+                            } else if (inputan.equalsIgnoreCase("Surabaya") && temp2 != 1) {
+                                temp4 = 7;
+                            } else {
+                                temp4 = 0;
+                                System.out.println(style.RED_BG + "<ERROR> Inputan SALAH! <ERROR>" + style.RESET);
+                            }
+                        } while (temp4 == 0);
+                        if (temp2 == 1) {
+
+                            System.out.println("####################################");
+                            System.out.println(style.CYAN_BG + "#### SELAMAT DATANG DI LION AIR ####" + style.RESET);
+                            System.out.println("####################################");
+                            System.out.print("Masukan Jumlah Penumpang : ");
+                            int jumlah = Integer.parseInt(br.readLine());
+                            System.out
+                                    .println("Tanggal Berangkat : " + decryptDate() + "/" + MM + "/" + YY);
+
+                            System.out.println("Silahkan isi data penumpang ");
+                            for (int i = 0; i < jumlah; i++) {
+                                System.out.print("Entry Booking ID : ");
+                                BookingID = br.readLine();
+                                System.out.print("Entry NIK : ");
+                                nik = br.readLine();
+                                System.out.print("Entry Nama : ");
+                                nama = br.readLine();
+                                System.out.print("Entry Jenis kelamin (P/L) : ");
+                                JenisKelamin = br.readLine();
+                                System.out.print("Entry No Pesawat : ");
+                                noPesawat = br.readLine();
+                                System.out.print("Entry No Kursi : ");
+                                noKursi = br.readLine();
+                                style.cetakSpasi(1);
+                            }
+                        }
                         break;
 
                     // Rute
@@ -141,9 +223,7 @@ public class main {
                 }
             } while (true);
 
-        } catch (
-
-        Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -337,8 +417,83 @@ public class main {
         citilink(z);
     }
 
-    public static void searchFilter() {
-
+    public static int decryptDate() {
+        // Temp2 = Kota awal
+        // Temp3 = Maskapai
+        // Temp4 = Kota tujuan
+        int a = 0;
+        // System.out.println("vector 1 : " + v.elementAt(0));
+        // System.out.println("Temp2 3 4 = " + temp2 + temp3 + temp4);
+        if (temp3 == 1) {
+            if (temp2 == 1) {
+                if (temp4 == 1) {
+                    a = (int) v.elementAt(0);
+                } else if (temp4 == 2) {
+                    a = (int) v.elementAt(1);
+                } else if (temp4 == 3) {
+                    a = (int) v.elementAt(2);
+                } else if (temp4 == 4) {
+                    a = (int) v.elementAt(3);
+                } else if (temp4 == 5) {
+                    a = (int) v.elementAt(4);
+                } else if (temp4 == 6) {
+                    a = (int) v.elementAt(5);
+                } else if (temp4 == 7) {
+                    a = (int) v.elementAt(6);
+                }
+            } else if (temp2 == 2) {
+                if (temp4 == 1) {
+                    a = (int) v.elementAt(0 + 7);
+                } else if (temp4 == 2) {
+                    a = (int) v.elementAt(1 + 7);
+                } else if (temp4 == 3) {
+                    a = (int) v.elementAt(2 + 7);
+                } else if (temp4 == 4) {
+                    a = (int) v.elementAt(3 + 7);
+                } else if (temp4 == 5) {
+                    a = (int) v.elementAt(4 + 7);
+                } else if (temp4 == 6) {
+                    a = (int) v.elementAt(5 + 7);
+                } else if (temp4 == 7) {
+                    a = (int) v.elementAt(6 + 7);
+                }
+            }
+        } else if (temp3 == 2) {
+            if (temp2 == 1) {
+                if (temp4 == 1) {
+                    a = (int) v.elementAt(0 + 14);
+                } else if (temp4 == 2) {
+                    a = (int) v.elementAt(1 + 14);
+                } else if (temp4 == 3) {
+                    a = (int) v.elementAt(2 + 14);
+                } else if (temp4 == 4) {
+                    a = (int) v.elementAt(3 + 14);
+                } else if (temp4 == 5) {
+                    a = (int) v.elementAt(4 + 14);
+                } else if (temp4 == 6) {
+                    a = (int) v.elementAt(5 + 14);
+                } else if (temp4 == 7) {
+                    a = (int) v.elementAt(6 + 14);
+                }
+            } else if (temp2 == 2) {
+                if (temp4 == 1) {
+                    a = (int) v.elementAt(0 + 21);
+                } else if (temp4 == 2) {
+                    a = (int) v.elementAt(1 + 21);
+                } else if (temp4 == 3) {
+                    a = (int) v.elementAt(2 + 21);
+                } else if (temp4 == 4) {
+                    a = (int) v.elementAt(3 + 21);
+                } else if (temp4 == 5) {
+                    a = (int) v.elementAt(4 + 21);
+                } else if (temp4 == 6) {
+                    a = (int) v.elementAt(5 + 21);
+                } else if (temp4 == 7) {
+                    a = (int) v.elementAt(6 + 21);
+                }
+            }
+        }
+        return a;
     }
 
 }

@@ -6,6 +6,9 @@ public class Lionair extends Tiket {
     int jumlahPenumpang, harga;
     String kotaTujuan, noPesawat, noKursi;
 
+    // BookingID, nik, nama, JenisKelamin, tgl berangkat, tgl Kembali, Kota asal,
+    // kotaTujuan, noPesawat, noKursi
+    // Jumlah Penumpang, harga, Kota tujuan,
     public Lionair(String bookingID, String nik, String nama, String jenis_kelamin, String tglBerangkat,
             String tglKembali,
             String kotaAsal, int jumlahPenumpang, int harga, String kotaTujuan, String noPesawat, String noKursi) {
