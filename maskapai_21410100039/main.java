@@ -17,8 +17,9 @@ public class main {
         // Bali = 0, lmbk = 1, jkrt = 2, Yogyakarta = 3, balikpapan = 4, makassar = 5,
         // surabaya = 6
         String[] kota = { "Bali", "Lombok", "Jakarta", "Yogyakarta", "Balikpapan", "Makassar", "Surabaya" };
-        String[] hargaLa = { "500000", "500000", "600000", "600000", "700000", "700000", "700000", "700000", "750000",
-                "750000", "800000" };
+        String[] hargaLa = { "500000", "500000", "600000", "600000", "700000", "700000", "700000", "700000", "",
+                "750000",
+                "800000", "800000", "750000" };
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -84,19 +85,64 @@ public class main {
                                 }
 
                             }
-                            // // Jakarta
-                            // for (int j = 0; j < kota.length; j++) {
-                            // System.out.println(kota[2] + "\t \t" + kota[j] + "\t \t");
-                            // }
-                            // // Medan
-                            // for (int j = 0; j < kota.length; j++) {
-                            // System.out.println(kota[6] + "\t \t" + kota[j] + "\t \t");
-                            // }
-                            // // Pekanbaru
-                            // for (int j = 0; j < kota.length; j++) {
-                            // System.out.println(kota[6] + "\t \t" + kota[j] + "\t \t");
-                            // }
+
+                            style.cetakSpasi(1);
+
+                            for (int j = 0; j < kota.length; j++) {
+                                // harga dll belum
+                                if (j == 2) {
+                                } else if (j < 2) {
+                                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + "\t \t\t" + hargaLa[j + 6]
+                                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                                            + style.RESET);
+                                } else {
+                                    System.out.println("  " + kota[2] + "\t \t" + kota[j] + " \t\t" + hargaLa[j + 6]
+                                            + "\t \tBusiness\t " + date + "\t \t" + style.GREEN + "[AVAILABLE]"
+                                            + style.RESET);
+                                }
+                            }
+
+                            style.cetakSpasi(1);
+
+                            for (int j = 0; j < kota.length; j++) {
+                                // harga dll belum
+                                if (j == 2) {
+                                } else if (j < 2) {
+                                    System.out.println("  Semarang" + "\t \t" + kota[j] + "\t \t\t" + hargaLa[j + 6]
+                                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                                            + style.RESET);
+                                } else {
+                                    System.out.println("  Semarang" + "\t \t" + kota[j] + " \t\t" + hargaLa[j + 6]
+                                            + "\t \tBusiness\t -\t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                                            + style.RESET);
+                                }
+                            }
+
+                            style.cetakSpasi(1);
+
+                            for (int j = 0; j < kota.length; j++) {
+                                // harga dll belum
+                                if (j == 2) {
+                                } else if (j < 2) {
+                                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + "\t \t\t" + hargaLa[j + 6]
+                                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                                            + style.RESET);
+                                } else {
+                                    System.out.println("  Pekanbaru" + "\t \t" + kota[j] + " \t\t" + hargaLa[j + 6]
+                                            + "\t \tBusiness\t - \t \t\t\t" + style.RED + "[NOT AVAILABLE]"
+                                            + style.RESET);
+                                }
+                            }
                         }
+                        break;
+
+                    case 3:
+
+                        break;
+
+                    case 4:
+                        style.cetakSpasi(2);
+                        System.out.println(style.RED_BG + "System Exiting..." + style.RESET);
                         break;
                 }
             } while (true);
