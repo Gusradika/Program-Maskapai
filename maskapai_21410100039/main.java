@@ -13,10 +13,10 @@ public class main {
     static SimpleDateFormat full = new SimpleDateFormat("dd/MM/yyyy");
     static Date date = new Date();
 
-    static String currentDD = (day.format(date));
+    static String currentDD = (day.format(date)), inputan;
     static String currentDate = (full.format(date));
 
-    public static int DD = Integer.parseInt(currentDD), YY = 2022;
+    public static int DD = Integer.parseInt(currentDD), YY = 2022, temp2 = 0;
     public static String MM = "Oktober", dateC = DD + "/" + MM + "/" + YY;
 
     static Vector v = new Vector<Integer>();
@@ -64,7 +64,7 @@ public class main {
                     System.out.println("#################################");
                     System.out.println(style.GREEN_U + "I Gusti Ngurah Aditya Kesuma - 21410100039" + style.RESET);
                     System.out.println("Date : " + currentDate);
-                    System.out.println("Vector : " + v);
+                    // System.out.println("Vector : " + v);
                     style.cetakSpasi(1);
                     System.out.println("[1]. Pesan Tiket");
                     System.out.println("[2]. Cek Ketersediaan Rute");
@@ -83,27 +83,50 @@ public class main {
 
                     // Pesan Tiket
                     case 1:
-
-                        style.cetakSpasi(2);
-                        System.out.println("########################");
-                        System.out.println(style.CYAN_BG + "#### 1. Pesan Tiket ####" + style.RESET);
-                        System.out.println("########################");
-                        System.out.println();
+                        boolean ulang = true;
+                        do {
+                            style.cetakSpasi(2);
+                            System.out.println("########################");
+                            System.out.println(style.CYAN_BG + "#### 1. Pesan Tiket ####" + style.RESET);
+                            System.out.println("########################");
+                            style.cetakSpasi(1);
+                            System.out.println("Pilih Kota keberangkatan : ");
+                            System.out.println("[1]. Surabaya");
+                            System.out.println("[2]. Jakarta");
+                            System.out.println("[3]. Semarang");
+                            System.out.println("[4]. Pekanbaru");
+                            style.cetakSpasi(1);
+                            System.out.print("Masukan inputan " + style.RED + " [0 = Back] : " + style.RESET);
+                            inputan = br.readLine();
+                            if (inputan.equalsIgnoreCase("0")) {
+                                style.cetakSpasi(2);
+                                System.out.println(style.CYAN_BG + "Back" + style.RESET);
+                                style.cetakSpasi(1);
+                                menu();
+                            }
+                            if (inputan.equalsIgnoreCase("1") || inputan.equalsIgnoreCase("Surabaya")) {
+                                temp2 = 1;
+                                ulang = false;
+                            } else if (inputan.equalsIgnoreCase("2") || inputan.equalsIgnoreCase("Jakarta")) {
+                                temp2 = 2;
+                                ulang = false;
+                            } else if (inputan.equalsIgnoreCase("3") || inputan.equalsIgnoreCase("Semarang")) {
+                                temp2 = 3;
+                                ulang = false;
+                            } else if (inputan.equalsIgnoreCase("4") || inputan.equalsIgnoreCase("Pekanbaru")) {
+                                temp2 = 4;
+                                ulang = false;
+                            } else {
+                                style.cetakSpasi(1);
+                                System.out.println(style.RED_BG + "<ERROR> Inputan SALAH! <ERROR>" + style.RESET);
+                            }
+                        } while (ulang);
+                        cekKetersediaan(temp2);
                         break;
 
                     // Rute
                     case 2:
-                        style.cetakSpasi(2);
-                        System.out.println("##########################################");
-                        System.out.println(style.CYAN_BG + "#### 2. Ketersediaan Rute Penerbangan ####" + style.RESET);
-                        System.out.println("##########################################");
-
-                        style.cetakSpasi(1);
-                        System.out.println(style.YELLOW_BRIGHT
-                                + "Kota Asal\t|\tKota Tujuan\t|\tHarga\t|\tClass\t|\tTanggal Tersedia\t|\tStatus"
-                                + style.RESET);
-                        lionair(99);
-                        citilink(99);
+                        cekKetersediaan(99);
                         break;
 
                     case 3:
@@ -113,6 +136,7 @@ public class main {
                     case 4:
                         style.cetakSpasi(2);
                         System.out.println(style.RED_BG + "System Exiting..." + style.RESET);
+                        System.exit(0);
                         break;
                 }
             } while (true);
@@ -297,6 +321,20 @@ public class main {
             }
             style.cetakSpasi(1);
         }
+    }
+
+    public static void cekKetersediaan(int z) {
+        style.cetakSpasi(2);
+        System.out.println("##########################################");
+        System.out.println(style.CYAN_BG + "#### 2. Ketersediaan Rute Penerbangan ####" + style.RESET);
+        System.out.println("##########################################");
+
+        style.cetakSpasi(1);
+        System.out.println(style.YELLOW_BRIGHT
+                + "Kota Asal\t|\tKota Tujuan\t|\tHarga\t|\tClass\t|\tTanggal Tersedia\t|\tStatus"
+                + style.RESET);
+        lionair(z);
+        citilink(z);
     }
 
     public static void searchFilter() {
