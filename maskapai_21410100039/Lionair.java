@@ -1,12 +1,12 @@
 package maskapai_21410100039;
 
-public class Citilink extends Tiket {
+public class Lionair extends Tiket {
 
     // auto harga
     int jumlahPenumpang, harga;
     String kotaTujuan, noPesawat, noKursi;
 
-    public Citilink(String bookingID, String nik, String nama, String jenis_kelamin, String tglBerangkat,
+    public Lionair(String bookingID, String nik, String nama, String jenis_kelamin, String tglBerangkat,
             String tglKembali,
             String kotaAsal, int jumlahPenumpang, int harga, String kotaTujuan, String noPesawat, String noKursi) {
         super(bookingID, nik, nama, jenis_kelamin, tglBerangkat, tglKembali, kotaAsal);
@@ -26,24 +26,24 @@ public class Citilink extends Tiket {
         int z = 0;
         if (x.equalsIgnoreCase(main.kota[6])) {
             if (y.equalsIgnoreCase(main.kota[0]) || y.equalsIgnoreCase(main.kota[1])) {
-                z = 700000;
+                z = 500000;
             }
             if (y.equalsIgnoreCase(main.kota[2]) || y.equalsIgnoreCase(main.kota[3])) {
-                z = 800000;
+                z = 600000;
             }
             if (y.equalsIgnoreCase(main.kota[4]) || y.equalsIgnoreCase(main.kota[5])) {
-                z = 850000;
+                z = 700000;
             }
         }
         if (x.equalsIgnoreCase(main.kota[2])) {
             if (y.equalsIgnoreCase(main.kota[0]) || y.equalsIgnoreCase(main.kota[1])) {
-                z = 1000000;
+                z = 700000;
             }
             if (y.equalsIgnoreCase(main.kota[6]) || y.equalsIgnoreCase(main.kota[3])) {
                 z = 750000;
             }
             if (y.equalsIgnoreCase(main.kota[4]) || y.equalsIgnoreCase(main.kota[5])) {
-                z = 900000;
+                z = 800000;
             }
         }
         return z;
