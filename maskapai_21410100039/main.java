@@ -18,14 +18,15 @@ public class main {
 
     static String currentDD = (day.format(date)), inputan;
     static String currentDate = (full.format(date));
+    static int jumlah = 0, total = 0;
 
     public static int DD = Integer.parseInt(currentDD), YY = 2022, temp2 = 0, temp3 = 0, temp4 = 0;
     public static String MM = "Oktober", dateC = DD + "/" + MM + "/" + YY;
 
     static Vector v = new Vector<Integer>();
+    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws NumberFormatException, IOException {
         style.cetakSpasi(4);
         int temp = 0;
         for (int i = 0; i < maskapai.length; i++) {
@@ -47,17 +48,20 @@ public class main {
             System.out.println("Progress => |" + style.GREEN_BG + "___________________" + style.RESET + "| 100%");
             style.cetakSpasi(2);
         }
+        System.out.print("Masukan Jumlah Penumpang : ");
+        jumlah = Integer.parseInt(br.readLine());
 
         menu();
     }
 
     public static void menu() {
 
+        Citilink cl[] = new Citilink[jumlah];
+        Lionair la[] = new Lionair[jumlah];
+
         int input = 0;
         // Bali = 0, lmbk = 1, jkrt = 2, Yogyakarta = 3, balikpapan = 4, makassar = 5,
         // surabaya = 6
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         try {
             do {
@@ -109,9 +113,11 @@ public class main {
                                 menu();
                             }
                             if (inputan.equalsIgnoreCase("1") || inputan.equalsIgnoreCase("Surabaya")) {
+                                String kotaAsal = "Surabaya";
                                 temp2 = 1;
                                 ulang = false;
                             } else if (inputan.equalsIgnoreCase("2") || inputan.equalsIgnoreCase("Jakarta")) {
+                                String kotaAsal = "Jakarta";
                                 temp2 = 2;
                                 ulang = false;
                             } else if (inputan.equalsIgnoreCase("3") || inputan.equalsIgnoreCase("Semarang")) {
@@ -177,16 +183,16 @@ public class main {
                                 System.out.println(style.RED_BG + "<ERROR> Inputan SALAH! <ERROR>" + style.RESET);
                             }
                         } while (temp4 == 0);
-                        if (temp2 == 1) {
+                        if (temp3 == 1) {
 
                             System.out.println("####################################");
                             System.out.println(style.CYAN_BG + "#### SELAMAT DATANG DI LION AIR ####" + style.RESET);
                             System.out.println("####################################");
-                            System.out.print("Masukan Jumlah Penumpang : ");
-                            int jumlah = Integer.parseInt(br.readLine());
+
                             System.out
                                     .println("Tanggal Berangkat : " + decryptDate() + "/" + MM + "/" + YY);
-
+                            tglBerangkat = decryptDate() + "/" + MM + "/" + YY;
+                            style.cetakSpasi(2);
                             System.out.println("Silahkan isi data penumpang ");
                             for (int i = 0; i < jumlah; i++) {
                                 System.out.print("Entry Booking ID : ");
@@ -199,10 +205,76 @@ public class main {
                                 JenisKelamin = br.readLine();
                                 System.out.print("Entry No Pesawat : ");
                                 noPesawat = br.readLine();
+                                System.out.print("Entry Tgl Kembali : ");
+                                tglKembali = br.readLine();
+                                System.out.print("Entry Kota Asal : ");
+                                KotaAsal = br.readLine();
+                                System.out.print("Entry Kota Tujuan : ");
+                                kotaTujuan = br.readLine();
                                 System.out.print("Entry No Kursi : ");
                                 noKursi = br.readLine();
                                 style.cetakSpasi(1);
+                                // BookingID, nik, nama, JenisKelamin, tgl berangkat, tgl Kembali, Kota asal,
+                                // kotaTujuan, noPesawat, noKursi
+                                // Jumlah Penumpang, harga, Kota tujuan,
+                                la[i] = new Lionair(BookingID, nik, nama, JenisKelamin, tglBerangkat, tglKembali,
+                                        KotaAsal, kotaTujuan, noPesawat, noKursi);
                             }
+                            for (int i = 0; i < jumlah; i++) {
+                                la[i].cetakSemuaData();
+                            }
+                            style.cetakSpasi(2);
+                            for (int i = 0; i < jumlah; i++) {
+                                total = total + la[i].getHarga();
+                            }
+                            System.out.print("Total : " + total);
+                        } else if (temp3 == 2) {
+
+                            System.out.println("####################################");
+                            System.out
+                                    .println(style.CYAN_BG + "#### SELAMAT DATANG DI CITILINK ####" + style.RESET);
+                            System.out.println("####################################");
+
+                            System.out
+                                    .println("Tanggal Berangkat : " + decryptDate() + "/" + MM + "/" + YY);
+                            tglBerangkat = decryptDate() + "/" + MM + "/" + YY;
+                            style.cetakSpasi(2);
+                            System.out.println("Silahkan isi data penumpang ");
+                            for (int i = 0; i < jumlah; i++) {
+                                System.out.print("Entry Booking ID : ");
+                                BookingID = br.readLine();
+                                System.out.print("Entry NIK : ");
+                                nik = br.readLine();
+                                System.out.print("Entry Nama : ");
+                                nama = br.readLine();
+                                System.out.print("Entry Jenis kelamin (P/L) : ");
+                                JenisKelamin = br.readLine();
+                                System.out.print("Entry No Pesawat : ");
+                                noPesawat = br.readLine();
+                                System.out.print("Entry Tgl Kembali : ");
+                                tglKembali = br.readLine();
+                                System.out.print("Entry Kota Asal : ");
+                                KotaAsal = br.readLine();
+                                System.out.print("Entry Kota Tujuan : ");
+                                kotaTujuan = br.readLine();
+                                System.out.print("Entry No Kursi : ");
+                                noKursi = br.readLine();
+                                style.cetakSpasi(1);
+                                // BookingID, nik, nama, JenisKelamin, tgl berangkat, tgl Kembali, Kota asal,
+                                // kotaTujuan, noPesawat, noKursi
+                                // Jumlah Penumpang, harga, Kota tujuan,
+                                cl[i] = new Citilink(BookingID, nik, nama, JenisKelamin, tglBerangkat, tglKembali,
+                                        KotaAsal, kotaTujuan, noPesawat, noKursi);
+                            }
+                            for (int i = 0; i < jumlah; i++) {
+                                cl[i].cetakSemuaData();
+                            }
+                            style.cetakSpasi(2);
+                            for (int i = 0; i < jumlah; i++) {
+                                total = total + cl[i].getHarga();
+                            }
+                            System.out.print("Total : " + total);
+
                         }
                         break;
 

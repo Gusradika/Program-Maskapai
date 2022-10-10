@@ -11,13 +11,12 @@ public class Lionair extends Tiket {
     // Jumlah Penumpang, harga, Kota tujuan,
     public Lionair(String bookingID, String nik, String nama, String jenis_kelamin, String tglBerangkat,
             String tglKembali,
-            String kotaAsal, int jumlahPenumpang, int harga, String kotaTujuan, String noPesawat, String noKursi) {
+            String kotaAsal, String kotaTujuan, String noPesawat, String noKursi) {
         super(bookingID, nik, nama, jenis_kelamin, tglBerangkat, tglKembali, kotaAsal);
-        this.jumlahPenumpang = jumlahPenumpang;
-        this.harga = harga;
         this.kotaTujuan = kotaTujuan;
         this.noPesawat = noPesawat;
         this.noKursi = noKursi;
+        this.harga = getTicketCost(kotaAsal, kotaTujuan);
     }
 
     // Getter
@@ -68,6 +67,11 @@ public class Lionair extends Tiket {
         return noKursi;
     }
 
+    @Override
+    public String jenis_kelamin() {
+        return super.jenis_kelamin();
+    }
+
     // Override
     @Override
     public String getBookingID() {
@@ -75,8 +79,20 @@ public class Lionair extends Tiket {
     }
 
     public void cetakSemuaData() {
-        // Booking ID, NIK, Nama, Harga, noKursi
-        System.out.println("Booking ID : " + super.getBookingID() + " NIK : " + super.getNik() + " Booking ID baru : "
-                + getBookingID());
+        // Booking ID, NIK, Nama, jk, kota asal, kota tujuan, tgl berangkat, tgl
+        // kembali, no pesawat, kursi, harga tiket
+        style.cetakSpasi(2);
+        System.out.println(style.GREEN_BG + "#### Detail Tiket ####" + style.RESET);
+        System.out.println("Booking ID : " + getBookingID());
+        System.out.println("NIK : " + getNik());
+        System.out.println("Nama : " + getNama());
+        System.out.println("Jenis Kelamin : " + jenis_kelamin());
+        System.out.println("Kota Asal : " + kotaAsal());
+        System.out.println("Kota Tujuan : " + kotaTujuan());
+        System.out.println("Tgl Berangkat : " + tglBerangkat());
+        System.out.println("Tgl Kembali : " + tglKembali());
+        System.out.println("No Pesawat : " + noPesawat());
+        System.out.println("No Kursi : " + noKursi());
+        System.out.println("Harga : " + getHarga());
     }
 }
