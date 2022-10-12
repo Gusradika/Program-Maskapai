@@ -67,12 +67,13 @@ public class main {
             do {
                 do {
                     style.cetakSpasi(2);
+                    total = 0;
                     System.out.println("#################################");
                     System.out.println(style.CYAN_BG + "#### Program Pemesanan Tiket ####" + style.RESET);
                     System.out.println("#################################");
                     System.out.println(style.GREEN_U + "I Gusti Ngurah Aditya Kesuma - 21410100039" + style.RESET);
                     System.out.println("Date : " + currentDate);
-                    System.out.println("Vector : " + v);
+                    // System.out.println("Vector : " + v);
                     style.cetakSpasi(1);
                     System.out.println("[1]. Pesan Tiket");
                     System.out.println("[2]. Cek Ketersediaan Rute");
@@ -493,6 +494,7 @@ public class main {
         // Temp2 = Kota awal
         // Temp3 = Maskapai
         // Temp4 = Kota tujuan
+        // Bali, Lombok, jakarta, jogja, balikpapan, makassar, surabaya
         int a = 0;
         // System.out.println("vector 1 : " + v.elementAt(0));
         // System.out.println("Temp2 3 4 = " + temp2 + temp3 + temp4);
@@ -510,58 +512,50 @@ public class main {
                     a = (int) v.elementAt(4);
                 } else if (temp4 == 6) {
                     a = (int) v.elementAt(5);
-                } else if (temp4 == 7) {
-                    a = (int) v.elementAt(6);
                 }
             } else if (temp2 == 2) {
                 if (temp4 == 1) {
-                    a = (int) v.elementAt(0 + 7);
+                    a = (int) v.elementAt(0 + 6);
                 } else if (temp4 == 2) {
-                    a = (int) v.elementAt(1 + 7);
-                } else if (temp4 == 3) {
-                    a = (int) v.elementAt(2 + 7);
+                    a = (int) v.elementAt(1 + 6);
                 } else if (temp4 == 4) {
-                    a = (int) v.elementAt(3 + 7);
+                    a = (int) v.elementAt(2 + 6);
                 } else if (temp4 == 5) {
-                    a = (int) v.elementAt(4 + 7);
+                    a = (int) v.elementAt(3 + 6);
                 } else if (temp4 == 6) {
-                    a = (int) v.elementAt(5 + 7);
+                    a = (int) v.elementAt(4 + 6);
                 } else if (temp4 == 7) {
-                    a = (int) v.elementAt(6 + 7);
+                    a = (int) v.elementAt(5 + 6);
                 }
             }
         } else if (temp3 == 2) {
             if (temp2 == 1) {
                 if (temp4 == 1) {
-                    a = (int) v.elementAt(0 + 14);
+                    a = (int) v.elementAt(0 + 12);
                 } else if (temp4 == 2) {
-                    a = (int) v.elementAt(1 + 14);
+                    a = (int) v.elementAt(1 + 12);
                 } else if (temp4 == 3) {
-                    a = (int) v.elementAt(2 + 14);
+                    a = (int) v.elementAt(2 + 12);
                 } else if (temp4 == 4) {
-                    a = (int) v.elementAt(3 + 14);
+                    a = (int) v.elementAt(3 + 12);
                 } else if (temp4 == 5) {
-                    a = (int) v.elementAt(4 + 14);
+                    a = (int) v.elementAt(4 + 12);
                 } else if (temp4 == 6) {
-                    a = (int) v.elementAt(5 + 14);
-                } else if (temp4 == 7) {
-                    a = (int) v.elementAt(6 + 14);
+                    a = (int) v.elementAt(5 + 12);
                 }
             } else if (temp2 == 2) {
                 if (temp4 == 1) {
-                    a = (int) v.elementAt(0 + 21);
+                    a = (int) v.elementAt(0 + 18);
                 } else if (temp4 == 2) {
-                    a = (int) v.elementAt(1 + 21);
-                } else if (temp4 == 3) {
-                    a = (int) v.elementAt(2 + 21);
+                    a = (int) v.elementAt(1 + 18);
                 } else if (temp4 == 4) {
-                    a = (int) v.elementAt(3 + 21);
+                    a = (int) v.elementAt(2 + 18);
                 } else if (temp4 == 5) {
-                    a = (int) v.elementAt(4 + 21);
+                    a = (int) v.elementAt(3 + 18);
                 } else if (temp4 == 6) {
-                    a = (int) v.elementAt(5 + 21);
+                    a = (int) v.elementAt(4 + 18);
                 } else if (temp4 == 7) {
-                    a = (int) v.elementAt(6 + 21);
+                    a = (int) v.elementAt(5 + 18);
                 }
             }
         }
